@@ -1,0 +1,111 @@
+/* .form-area {
+    position: absolute;
+    width: 50%;
+    right: 10px;
+    top: 30%;
+} */
+.container {
+    background-color: #fff;
+    /* height: 530px; */
+    margin: 60px;
+    border-radius: 20px;
+    box-shadow: -9px -13px 20px -20px rgba(0, 0, 0, 0.45),
+      16px 3px 20px -20px rgba(0, 0, 0, 0.45),
+      -9px 16px 20px -20px rgba(0, 0, 0, 0.45),
+      -9px 3px 20px -20px rgba(0, 0, 0, 0.45);
+  }
+  .form-page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .left-data {
+    width: 50%;
+    
+  }
+  .left-img{
+      position: absolute;
+      top: 20px;
+      left: 80px;
+  }
+  .new-login{
+      position: absolute;
+      padding-left: 100px;
+      right: 850px;
+      bottom: 45px;
+      
+  }
+  .right-data {
+    padding-right: 100px;
+    width: 40%;
+  }
+  
+  .sign-title {
+      margin-top: 35px;
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+  
+  .input-field {
+    outline: none;
+    background-color: #fff;
+    height: 40px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 10% 80% 5%;
+    padding: 0px;
+    border-bottom: 1px solid rgb(87, 92, 87);
+  }
+  
+  .input-field > input {
+    border: none;
+    background-color: #fff;
+    font-size: 15px;
+    /* font-weight: 600; */
+    outline: none;
+  }
+  
+  .input-field > i {
+    display: flex;
+    align-items: center;
+    /* padding-left: 5px; */
+    color: #000;
+  }
+  
+  .checkbox label {
+    margin-left: 30px;
+  }
+  .btn {
+    padding: 10px 20px;
+    border: 1px solid #288cef;
+    border-radius: 5px;
+    background-color: #288cef;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 40px;
+  }
+  
+  .btn:hover {
+    padding: 10px 20px;
+    border: 1px solid #288cef;
+    background-color: #fff;
+    font-weight: 500;
+    color: #288cef;
+    margin-top: 40px;
+  }
+  
+  .alternative-login {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 132px;
+  }
+  .social-icons {
+    margin-left: 20px;
+  }
+  .social-icons i {
+    margin-left: 10px;
+  }
+  
