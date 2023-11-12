@@ -13,7 +13,7 @@ const Login = () => {
         name:"",
         pass:""
     });
-    const [data, setData] = useState([])  
+    // const [data, setData] = useState([])  
     console.log(inputValue);
     const getData =(e) =>{
         // console.log(e.target.value);
@@ -39,14 +39,15 @@ const Login = () => {
             alert("Give your Password")
          }
          else{
+          //check user is valid or not
             if(getUserData && getUserData.length){
-                const userData = JSON.parse(getUserData);
-                const userLogin = userData.filter((element,k) =>{
+                const userData = JSON.parse(getUserData);//parse the localstorage data
+                const userLogin = userData.filter((element) =>{
                     return element.name === name && element.pass === pass
                 });
 
                 if(userLogin.length === 0){
-                    alert('Invalid Details')
+                    alert('Invalid Details or sign up first')
                 }
                 else{
                     alert('Login Successfully')
@@ -71,8 +72,7 @@ const Login = () => {
             <div>
               <label className="input-field">
                 <i>
-                  {" "}
-                  <FontAwesomeIcon icon={faUser} />{" "}
+                  <FontAwesomeIcon icon={faUser} />
                 </i>
                 <input
                   type="text"
@@ -84,10 +84,10 @@ const Login = () => {
               
               <label className="input-field">
                 <i>
-                  <FontAwesomeIcon icon={faLock} />{" "}
+                  <FontAwesomeIcon icon={faLock} />
                 </i>
                 <input
-                  type=""
+                  type="password"
                   onChange={getData}
                   name="pass"
                   placeholder="Password"

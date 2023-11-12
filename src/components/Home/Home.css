@@ -77,7 +77,11 @@
 .checkbox label {
   margin-left: 30px;
 }
+.btn > NavLink{
+  text-decoration: none;
+}
 .btn {
+  
   padding: 10px 20px;
   border: 1px solid #288cef;
   border-radius: 5px;

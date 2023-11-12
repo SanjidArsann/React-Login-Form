@@ -16,7 +16,7 @@ const Home = () => {
         pass:"",
         conPass:""
     });
-    const [data, setData] = useState([])  
+    // const [data, setData] = useState([])  
     console.log(inputValue);
     const getData =(e) =>{
         // console.log(e.target.value);
@@ -29,47 +29,53 @@ const Home = () => {
         });
     }
 
-    const addData =(e)=>{
+  
+    const addData = (e) => {
+      e.preventDefault();
+    
+      const getUserData = (localStorage.getItem("user")); 
+      const userData = JSON.parse(getUserData);// parse the data those are from localstorage
 
-        const getUserData = localStorage.getItem("user");
+      const { name, email, pass, conPass } = inputValue;
 
-        e.preventDefault();
-         const{name, email, pass, conPass} = inputValue;
-         if(name === ""){
-            alert('Enter your name')
-         }
-         else if(email === ""){
-            alert("Enter your email")
-         }
-         else if(!email.includes("@")){
-            alert("Enter your valid email address")
-         }
-         else if(pass ==="" || conPass===""){
-            alert("Give your Password")
-         }
-         else if(pass.length < 8){
-            alert("Password should be greater than seven")
-         }
-         else if(pass != conPass){
-            alert("Password should be same")
-         }
-         else{
-            if(getUserData && getUserData.length){
-                const userData = JSON.parse(getUserData);
-                const userLogin = userData.filter((element,k) =>{
-                    return element.name === name && element.pass === pass
-                });
-
-                if(userLogin.length === 0){
-                    alert('Already Have An Account')
-                }
-                else{
-                    alert("Account Created")
-                    localStorage.setItem("user",JSON.stringify([...data,inputValue]));
-                }
-            }
-         } 
+      if (name === "" && email === ""){
+        alert("Fillup every field");
+      }
+      else if (name === "") {
+        alert('Enter your name');
+      }
+      else if (email === "") {
+        alert("Enter your email");
+      } 
+      else if (!email.includes("@")) {
+        alert("Enter your valid email address");
+      } 
+      else if (pass === "" || conPass === "") {
+        alert("Give your Password");
+      } 
+      else if (pass.length < 8) {
+        alert("Password should be greater than seven");
+      } 
+      else if (pass !== conPass) {
+        alert("Password should be same");
+      } 
+      else {
+        // Check if the email already exists
+        const userExists = userData.some(user => user.email === email);
+    
+        if (userExists) {
+          alert("Account with this email already exists");
+        } 
+        else {
+          alert("Account Created");
+          // Add the new user to the existing data
+          const newData = [...userData, inputValue];
+          localStorage.setItem("user", JSON.stringify(newData));
+        }
+      }
     }
+
+    
 
 
 
@@ -111,7 +117,9 @@ const Home = () => {
                 <label>Remember me</label>
               </div>
             </div>
+            
             <button className="btn" onClick={addData}>Sign Up</button>
+            
 
             <div className="optional-login">
               <p className="social-text">Or Login with </p>
