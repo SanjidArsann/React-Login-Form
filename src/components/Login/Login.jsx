@@ -2,59 +2,58 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLock,
   faUser,
-  faTentArrowLeftRight
 } from "@fortawesome/free-solid-svg-icons";
 import './Login.css';
+import { useState } from "react";
 import {NavLink} from 'react-router-dom'
 
 const Login = () => {
 
-    // const[inputValue, setInputValue] = useState({
-    //     name:"",
-    //     email:"",
-    //     pass:"",
-    //     conPass:""
-    // });
-    // const [data, setData] = useState([])  
-    // console.log(inputValue);
-    // const getData =(e) =>{
-    //     // console.log(e.target.value);
-    //     const {value,name} = e.target;
-    //     setInputValue(()=>{
-    //         return{
-    //             ...inputValue,
-    //             [name]:value
-    //         }
-    //     });
-    // }
+    const[inputValue, setInputValue] = useState({
+        name:"",
+        pass:""
+    });
+    const [data, setData] = useState([])  
+    console.log(inputValue);
+    const getData =(e) =>{
+        // console.log(e.target.value);
+        const {value,name} = e.target;
+        setInputValue(()=>{
+            return{
+                ...inputValue,
+                [name]:value
+            }
+        });
+    }
 
-    // const addData =(e)=>{
-    //     e.preventDefault();
-    //     console.log(inputValue);
-    //      const{name, email, pass, conPass} = inputValue;
-    //      if(name === ""){
-    //         alert('Enter your name')
-    //      }
-    //      else if(email === ""){
-    //         alert("Enter your email")
-    //      }
-    //      else if(!email.includes("@")){
-    //         alert("Enter your valid email address")
-    //      }
-    //      else if(pass ==="" || conPass===""){
-    //         alert("Give your Password")
-    //      }
-    //      else if(pass.length < 8){
-    //         alert("Password should be greater than seven")
-    //      }
-    //      else if(pass != conPass){
-    //         alert("Password should be same")
-    //      }
-    //      else{
-    //         alert("Account Created")
-    //         localStorage.setItem("user",JSON.stringify([...data,inputValue]));
-    //      }
-    // }
+    const addData =(e)=>{
+
+        const getUserData = localStorage.getItem("user");
+
+        e.preventDefault();
+         const{name, pass} = inputValue;
+         if(name === ""){
+            alert('Enter your name')
+         }
+         else if(pass ===""){
+            alert("Give your Password")
+         }
+         else{
+            if(getUserData && getUserData.length){
+                const userData = JSON.parse(getUserData);
+                const userLogin = userData.filter((element,k) =>{
+                    return element.name === name && element.pass === pass
+                });
+
+                if(userLogin.length === 0){
+                    alert('Invalid Details')
+                }
+                else{
+                    alert('Login Successfully')
+                }
+            }
+         }
+    }
   return (
     <div className="container">
       <section className="form-page">
@@ -63,7 +62,7 @@ const Login = () => {
             <img src="../../../public/pngtree-girl.png" alt="" />
           </div>
           <div className="new-login">
-            <a href=""><NavLink to="/Home">Create an account</NavLink></a>
+            <a href=""><NavLink to="/">Create an account</NavLink></a>
           </div>
         </div>
         <div className="right-data">
@@ -77,7 +76,7 @@ const Login = () => {
                 </i>
                 <input
                   type="text"
-                //   onChange={getData}
+                  onChange={getData}
                   name="name"
                   placeholder="Your Name"
                 />
@@ -89,7 +88,7 @@ const Login = () => {
                 </i>
                 <input
                   type=""
-                //   onChange={getData}
+                  onChange={getData}
                   name="pass"
                   placeholder="Password"
                 />
@@ -101,7 +100,7 @@ const Login = () => {
               </div>
             </div>
             <button className="btn" 
-            // onClick={addData}
+            onClick={addData}
             >
               Log In
             </button>
@@ -109,15 +108,17 @@ const Login = () => {
             <div className="alternative-login">
               <p className="social-text">Or Login with </p>
               <div className="social-icons">
-                <i>
-                  <FontAwesomeIcon icon={faTentArrowLeftRight} />
-                </i>
-                <i>
-                  <FontAwesomeIcon icon={faTentArrowLeftRight} />
-                </i>
-                <i>
-                  <FontAwesomeIcon icon={faTentArrowLeftRight} />
-                </i>
+                
+                <a href="">
+                <img src="https://pngimg.com/d/facebook_logos_PNG19750.png" alt="" />
+                </a>
+                <a href="">
+                <img src="https://www.umces.edu/sites/default/files/twitter.png" alt="" />
+                </a>
+                <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/GooglePlus-logo-red.png" alt="" />
+                </a>
+                
               </div>
             </div>
           </form>

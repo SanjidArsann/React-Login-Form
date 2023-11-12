@@ -102,10 +102,11 @@
     margin-bottom: 30px;
     margin-top: 132px;
   }
-  .social-icons {
+  /* .social-icons {
     margin-left: 20px;
-  }
-  .social-icons i {
-    margin-left: 10px;
+  } */
+  .social-icons img{
+    width: 30px;
+    margin-right: 10px;
   }
   

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLock,
   faUser,
-  faTentArrowLeftRight,
   faMailBulk,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -31,8 +30,10 @@ const Home = () => {
     }
 
     const addData =(e)=>{
+
+        const getUserData = localStorage.getItem("user");
+
         e.preventDefault();
-        console.log(inputValue);
          const{name, email, pass, conPass} = inputValue;
          if(name === ""){
             alert('Enter your name')
@@ -53,10 +54,26 @@ const Home = () => {
             alert("Password should be same")
          }
          else{
-            alert("Account Created")
-            localStorage.setItem("user",JSON.stringify([...data,inputValue]));
-         }
+            if(getUserData && getUserData.length){
+                const userData = JSON.parse(getUserData);
+                const userLogin = userData.filter((element,k) =>{
+                    return element.name === name && element.pass === pass
+                });
+
+                if(userLogin.length === 0){
+                    alert('Already Have An Account')
+                }
+                else{
+                    alert("Account Created")
+                    localStorage.setItem("user",JSON.stringify([...data,inputValue]));
+                }
+            }
+         } 
     }
+
+
+
+
   return (
     <div className="container">
       <section className="form-page">
@@ -99,15 +116,15 @@ const Home = () => {
             <div className="optional-login">
               <p className="social-text">Or Login with </p>
               <div className="social-icons">
-                <i>
-                  <FontAwesomeIcon icon={faTentArrowLeftRight} />
-                </i>
-                <i>
-                  <FontAwesomeIcon icon={faTentArrowLeftRight} />
-                </i>
-                <i>
-                  <FontAwesomeIcon icon={faTentArrowLeftRight} />
-                </i>
+              <a href="">
+                <img src="https://pngimg.com/d/facebook_logos_PNG19750.png" alt="" />
+                </a>
+                <a href="">
+                <img src="https://www.umces.edu/sites/default/files/twitter.png" alt="" />
+                </a>
+                <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/GooglePlus-logo-red.png" alt="" />
+                </a>
               </div>
             </div>
           </form>
